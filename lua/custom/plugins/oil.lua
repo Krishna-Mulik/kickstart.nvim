@@ -5,6 +5,12 @@ return {
     ---@type oil.SetupOpts
     opts = {
       vim.keymap.set('n', '-', '<cmd>Oil<CR>'),
+      view_options = {
+        show_hidden = false,
+        is_hidden_file = function(name, _)
+          return name:sub(1, 1) == '.' and not name:match '^%.env'
+        end,
+      },
     },
     -- Optional dependencies
     dependencies = { { 'echasnovski/mini.icons', opts = {} } },
